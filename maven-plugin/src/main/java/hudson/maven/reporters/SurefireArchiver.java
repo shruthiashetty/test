@@ -77,7 +77,8 @@ public class SurefireArchiver extends MavenReporter {
         if (isSurefireTest(mojo)) {
 		if ((!mojo.is("org.apache.maven.plugins", "maven-failsafe-plugin", "integration-test"))
 		    && (!mojo.is("eviware", "maven-soapui-plugin", "test"))
-		    && (!mojo.is("eviware", "maven-soapui-pro-plugin", "test"))) {
+		    && (!mojo.is("eviware", "maven-soapui-pro-plugin", "test"))
+		    && (!mojo.is("com.github.searls", "jasmine-maven-plugin", "test"))) {
                 // tell surefire:test to keep going even if there was a failure,
                 // so that we can record this as yellow.
                 // note that because of the way Maven works, just updating system property at this point is too late
@@ -244,7 +245,8 @@ public class SurefireArchiver extends MavenReporter {
             && (!mojo.is("org.apache.maven.plugins", "maven-surefire-plugin", "test"))
             && (!mojo.is("org.apache.maven.plugins", "maven-failsafe-plugin", "integration-test"))
             && (!mojo.is("eviware", "maven-soapui-plugin", "test"))
-            && (!mojo.is("eviware", "maven-soapui-pro-plugin", "test")))
+            && (!mojo.is("eviware", "maven-soapui-pro-plugin", "test"))
+            && (!mojo.is("com.github.searls", "jasmine-maven-plugin", "test")))
             return false;
 
         try {
@@ -317,6 +319,11 @@ public class SurefireArchiver extends MavenReporter {
                 }
             } else if (mojo.is("eviware", "maven-soapui-pro-plugin", "test")) {
                 Boolean skipTests = mojo.getConfigurationValue("skip", Boolean.class);
+                if (((skipTests != null) && (skipTests))) {
+                    return false;
+                }
+            } else if (mojo.is("com.github.searls", "jasmine-maven-plugin", "test")) {
+                Boolean skipTests = mojo.getConfigurationValue("skipTests", Boolean.class);
                 if (((skipTests != null) && (skipTests))) {
                     return false;
                 }
