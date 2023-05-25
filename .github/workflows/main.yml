@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Log level'     
+        description: 'Branch Name'     
         required: true
         default: 'main'
       repo:
