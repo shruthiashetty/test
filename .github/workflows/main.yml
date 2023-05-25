@@ -1,5 +1,15 @@
 name: my workflow
-on: push
+on: 
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Log level'     
+        required: true
+        default: 'main'
+      repo:
+        description: 'repository where code is residing'
+        required: true
+        default: 'test'
 jobs:
   build:
     runs-on: ubuntu-latest
