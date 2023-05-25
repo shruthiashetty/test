@@ -6,8 +6,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Set branch
-      run: echo "BRANCH=${{ github.event.inputs.branch_name }}" >> $GITHUB_branch
+      run: echo "BRANCH=${{ github.event.inputs.branch_name }}" >> $GITHUB_env
     - name: Set Repo
-      run : echo "REPO=${{ github.event.inputs.repo_name }}" >> $GITHUB_repo
+      run : echo "REPO=${{ github.event.inputs.repo_name }}" >> $GITHUB_env
     - name: Test
       run: echo $BRANCH $REPO
