@@ -1,0 +1,13 @@
+name: my workflow
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set branch
+      run: echo "BRANCH=${{ github.event.inputs.branch_name }}" >> $GITHUB_branch
+    - name: Set Repo
+      run : echo "REPO=${{ github.event.inputs.repo_name }}" >> $GITHUB_repo
+    - name: Test
+      run: echo $BRANCH $REPO
