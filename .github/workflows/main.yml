@@ -21,6 +21,10 @@ jobs:
       run : echo "REPO=${{ github.event.inputs.repo }}" >> $GITHUB_ENV
     - name: Test
       run: echo $BRANCH $REPO
+    - name: git-bash
+      # You may pin to the exact commit or the version.
+      # uses: pkg-src/github-action-git-bash@d7e3f57b86fcf5d919a5ba685d459583735b7611
+      uses: pkg-src/github-action-git-bash@v1.1
     - name: Validate Input
       if: "${{ github.event.inputs.repo != '' }}" 
       run: |
