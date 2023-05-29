@@ -28,8 +28,8 @@ jobs:
     - name: Validate Input
       if: "${{ github.event.inputs.repo != '' }}" 
       run: |
-        $result= git ls-remote --heads https://github.com/${{ github.event.inputs.repo }}/${{ github.event.inputs.repo }}.git
-        echo $result
+        git --version
+        git ls-remote --heads https://github.com/${{ github.event.inputs.repo }}/${{ github.event.inputs.repo }}.git
     - name: Validate Input
       if: "${{ github.event.inputs.branch != '' }}" 
       run: |
