@@ -21,3 +21,13 @@ jobs:
       run : echo "REPO=${{ github.event.inputs.repo }}" >> $GITHUB_ENV
     - name: Test
       run: echo $BRANCH $REPO
+    - name: Validate Input
+      if: "${{ github.event.inputs.repo != '' }}" 
+      run: |
+        $result= git ls-remote --heads https://github.com/${{ github.event.inputs.repo }}/${{ github.event.inputs.repo }}.git
+        echo $result
+    - name: Validate Input
+      if: "${{ github.event.inputs.branch != '' }}" 
+      run: |
+       $result= git ls-remote --heads https://github.com/${{ github.event.inputs.repo }}/${{ github.event.inputs.repo }}.git ${{ github.event.inputs.branch }}
+       echo $result
